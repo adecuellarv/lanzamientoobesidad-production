@@ -30,7 +30,9 @@
                   <h1 class="card__title">Bienvenido a la experiencia digital</h1>
                 </div>
 
-
+                <div class="actions fade-seq btn-in">
+                  <a id="startBtn" class="btn-primary">Comenzar</a>
+                </div>
               </div>
               <footer class="page-footer">
                 <p>PP-TR-MX-PP-TR-MX-0504 | Material Exclusivo para Profesionales de la Salud | Agosto 2025 | No. de
@@ -53,6 +55,36 @@
 
     </div>
   </div>
+
+  <script>
+    // Fechas umbral en horario de CDMX
+    //const agendaStart = new Date('2025-08-28T20:00:00-06:00');
+    const agendaStart = new Date('2025-08-28T00:00:00-06:00'); // Viernes 29
+    const mainStart = new Date('2025-08-30T00:00:00-06:00'); // Sábado 30
+    //const mainStart = new Date('2025-08-28T20:10:00-06:00'); // Sábado 30
+
+    function nowInMexicoCity() {
+      return new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' })
+      );
+    }
+
+    const btn = document.getElementById('startBtn');
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); // evita el comportamiento por defecto del <a>
+
+      const now = nowInMexicoCity();
+
+      if (now >= mainStart) {
+        window.location.href = "";
+      } else if (now >= agendaStart) {
+        window.location.href = "";
+      } else {
+        //alert("Aún no está disponible, regresa más tarde 🙂");
+      }
+    });
+  </script>
 
 </body>
 
