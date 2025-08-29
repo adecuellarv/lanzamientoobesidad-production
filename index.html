@@ -1,13 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lanzamiento obesidad</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="transparent">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Mounjaro">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Experiencias Mounjaro</title>
 </head>
+
 <body>
-  <div style="min-height: 100vh; display: grid; place-items: center;">
-    <h1 style="font-weight: bold; font-size: 2.25rem; line-height: 2.5rem; color: black;">Próximamente</h1>
+  <div id="root">
+    <div data-overlay-container="true">
+      <div class="app">
+        <div class="app__gradient"></div>
+
+        <div class="app__content">
+          <main class="main">
+            <section class="section-center">
+              <img src="./img/logo-compuesto.svg" alt="Logo Compuesto" class="brand" />
+
+              <div class="stack-center">
+                <div class="card">
+                  <img src="./img/LOGO_APP.webp" alt="Logo App" />
+                  <h1 class="card__title">Bienvenido a la experiencia digital</h1>
+                </div>
+
+                <div class="actions">
+                  <!-- convertimos a <a> para que sea navegable -->
+                  <a id="startBtn" class="btn-primary">Comenzar</a>
+                </div>
+              </div>
+            </section>
+
+            <div class="bg-image-wrap">
+              <img src="./img/bg-start.webp" alt="" class="bg-image" />
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <section class="live-region" aria-label="Notifications alt+T" tabindex="-1" aria-live="polite"
+        aria-relevant="additions text" aria-atomic="false">
+      </section>
+    </div>
   </div>
+
+  <script>
+    // Fechas umbral en horario de CDMX
+    const agendaStart = new Date('2025-08-28T17:50:00-06:00');
+    //const agendaStart = new Date('2025-08-29T00:00:00-06:00'); // Viernes 29
+    const mainStart   = new Date('2025-08-30T00:00:00-06:00'); // Sábado 30
+
+    function nowInMexicoCity() {
+      return new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' })
+      );
+    }
+
+    const now = nowInMexicoCity();
+    const btn = document.getElementById('startBtn');
+    
+    if (now >= mainStart) {
+      btn.href = "https://lanzamientoobesidad-test.onrender.com";
+    } else if (now >= agendaStart) {
+      btn.href = "https://lanzamientoobesidad-test.onrender.com/agenda";
+    } else {
+      btn.href = "#"; // opcional, antes del 29 no hace nada
+      btn.style.pointerEvents = "none";
+      btn.style.opacity = "0.6";
+    }
+  </script>
 </body>
 </html>
