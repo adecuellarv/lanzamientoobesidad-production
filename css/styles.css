@@ -105,7 +105,7 @@
 
     .card img {
       display: block;
-      max-width: 100%;
+      max-width: 90%;
       height: auto;
       margin: 0 auto 12px;
     }
@@ -172,6 +172,26 @@
     /* Utilidades de accesibilidad para notifications */
     .live-region {
       position: static;
+    }
+    .page-footer {
+      position: absolute;        /* siempre abajo */
+      bottom: 0;
+      left: 0;
+      width: 80%;
+      left: 10%;
+      text-align: center; 
+      text-align: center; 
+      padding: 15px 0;
+      color: #fff;
+      font-size: 0.6rem; line-height: 1rem;
+    }
+
+    @media screen and (max-height: 665px) {
+      .page-footer {
+        position: relative;
+        width: 95%;
+        left: 0px;
+      }
     }
 
     /* Pequeños ajustes responsivos */
