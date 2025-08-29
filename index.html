@@ -54,7 +54,7 @@
     //const agendaStart = new Date('2025-08-28T19:50:00-06:00');
     const agendaStart = new Date('2025-08-29T00:00:00-06:00'); // Viernes 29
     //const mainStart = new Date('2025-08-30T00:00:00-06:00'); // Sábado 30
-    const mainStart = new Date('2025-08-28T19:45:00-06:00'); // Sábado 30
+    const mainStart = new Date('2025-08-28T19:59:00-06:00'); // Sábado 30
 
     function nowInMexicoCity() {
       return new Date(
@@ -62,19 +62,23 @@
       );
     }
 
-    const now = nowInMexicoCity();
     const btn = document.getElementById('startBtn');
 
-    if (now >= mainStart) {
-      btn.href = "https://lanzamientoobesidad-product.netlify.app";
-    } else if (now >= agendaStart) {
-      btn.href = "https://lanzamientoobesidad-product.netlify.app/agenda";
-    } else {
-      btn.href = "#"; // opcional, antes del 29 no hace nada
-      btn.style.pointerEvents = "none";
-      btn.style.opacity = "0.6";
-    }
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); // evita el comportamiento por defecto del <a>
+
+      const now = nowInMexicoCity();
+
+      if (now >= mainStart) {
+        window.location.href = "https://lanzamientoobesidad-product.netlify.app/mapa";
+      } else if (now >= agendaStart) {
+        window.location.href = "https://lanzamientoobesidad-product.netlify.app/agenda";
+      } else {
+        alert("Aún no está disponible, regresa más tarde 🙂");
+      }
+    });
   </script>
+
 </body>
 
 </html>
