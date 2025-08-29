@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,32 +15,32 @@
   <div id="root">
     <div data-overlay-container="true">
       <div class="app">
-        <div class="app__gradient"></div>
+        <div class="app__gradient animate-gradient"></div> <!-- gradiente animado -->
 
         <div class="app__content">
           <main class="main">
-            <section class="section-center">
-              <img src="./img/logo-compuesto.svg" alt="Logo Compuesto" class="brand" />
+            <section class="section-center reveal-seq">
+              <img src="./img/logo-compuesto.svg" alt="Logo Compuesto" class="brand float-in" />
 
               <div class="stack-center">
-                <div class="card">
+                <div class="card pop-in">
                   <img src="./img/LOGO_APP.webp" alt="Logo App" />
                   <h1 class="card__title">Bienvenido a la experiencia digital</h1>
                 </div>
 
-                <div class="actions">
-                  <!-- convertimos a <a> para que sea navegable -->
-                  <a id="startBtn" class="btn-primary">Comenzar</a>
+                <div class="actions reveal-up">
+                  <a id="startBtn" class="btn-primary glow">Comenzar</a>
                 </div>
               </div>
             </section>
 
-            <div class="bg-image-wrap">
+            <div class="bg-image-wrap parallax">
               <img src="./img/bg-start.webp" alt="" class="bg-image" />
             </div>
           </main>
         </div>
       </div>
+
 
       <section class="live-region" aria-label="Notifications alt+T" tabindex="-1" aria-live="polite"
         aria-relevant="additions text" aria-atomic="false">
@@ -51,7 +52,7 @@
     // Fechas umbral en horario de CDMX
     const agendaStart = new Date('2025-08-28T17:50:00-06:00');
     //const agendaStart = new Date('2025-08-29T00:00:00-06:00'); // Viernes 29
-    const mainStart   = new Date('2025-08-30T00:00:00-06:00'); // Sábado 30
+    const mainStart = new Date('2025-08-30T00:00:00-06:00'); // Sábado 30
 
     function nowInMexicoCity() {
       return new Date(
@@ -61,7 +62,7 @@
 
     const now = nowInMexicoCity();
     const btn = document.getElementById('startBtn');
-    
+
     if (now >= mainStart) {
       btn.href = "https://lanzamientoobesidad-product.netlify.app";
     } else if (now >= agendaStart) {
@@ -73,4 +74,5 @@
     }
   </script>
 </body>
+
 </html>
