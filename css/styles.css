@@ -101,11 +101,14 @@
       padding: 32px 16px;
       text-align: center;
       opacity: 1;
+      margin: 10px;
+      padding: 10px;
+      width: 90%;
     }
 
     .card img {
       display: block;
-      max-width: 90%;
+      max-width: 50%;
       height: auto;
       margin: 0 auto 12px;
     }
@@ -222,3 +225,55 @@
 .brand, .card, .actions {
   will-change: opacity, transform;
 }
+
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
+  user-select: none;
+}
+
+.countdown__item {
+  display: grid;
+  grid-template-rows: auto auto;
+  place-items: center;
+  min-width: 47px;
+  padding: 10px 8px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(79,0,145,0.65));
+  box-shadow: var(--shadow-soft), var(--shadow-inset-soft);
+}
+
+.countdown__num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.countdown__label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-top: 6px;
+}
+
+.countdown__sep {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.6rem;
+  font-weight: 700;
+  transform: translateY(-2px);
+}
+
+.countdown__done {
+  margin-top: 12px;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: .02em;
+}
+

@@ -28,9 +28,33 @@
                 <div class="card fade-seq card-in">
                   <img src="./img/LOGO_APP.webp" alt="Logo App" />
                   <h1 class="card__title">Bienvenido a la experiencia digital</h1>
+                  <div class="countdown">
+                    <div class="countdown__item">
+                      <span id="cd-days" class="countdown__num">00</span>
+                      <span class="countdown__label">días</span>
+                    </div>
+                    <div class="countdown__sep">:</div>
+                    <div class="countdown__item">
+                      <span id="cd-hours" class="countdown__num">00</span>
+                      <span class="countdown__label">horas</span>
+                    </div>
+                    <div class="countdown__sep">:</div>
+                    <div class="countdown__item">
+                      <span id="cd-mins" class="countdown__num">00</span>
+                      <span class="countdown__label">min</span>
+                    </div>
+                    <div class="countdown__sep">:</div>
+                    <div class="countdown__item">
+                      <span id="cd-secs" class="countdown__num">00</span>
+                      <span class="countdown__label">seg</span>
+                    </div>
+                  </div>
+
+                  <p id="cd-done" class="countdown__done" hidden>¡Comenzamos!</p>
+
                 </div>
 
-
+  
               </div>
               <footer class="page-footer">
                 <p>PP-TR-MX-PP-TR-MX-0504 | Material Exclusivo para Profesionales de la Salud | Agosto 2025 | No. de
@@ -53,7 +77,62 @@
 
     </div>
   </div>
+  <script>
+    const MX_TZ = 'America/Mexico_City';
 
+    function nowInMX() {
+      return new Date(new Date().toLocaleString('en-US', { timeZone: MX_TZ }));
+    }
+
+    function targetTomorrow8AM_MX() {
+      const now = nowInMX();
+      const target = new Date(now);
+      target.setHours(8, 0, 0, 0);
+      target.setDate(target.getDate() + 1);
+      return target;
+    }
+
+    const target = targetTomorrow8AM_MX();
+
+    const $d = document.getElementById('cd-days');
+    const $h = document.getElementById('cd-hours');
+    const $m = document.getElementById('cd-mins');
+    const $s = document.getElementById('cd-secs');
+    const $done = document.getElementById('cd-done');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now = nowInMX();
+      let diff = target - now;
+
+      if (diff <= 0) {
+        $d.textContent = '00';
+        $h.textContent = '00';
+        $m.textContent = '00';
+        $s.textContent = '00';
+        $done.hidden = false;
+        clearInterval(timer);
+        return;
+      }
+
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      $d.textContent = pad(days);
+      $h.textContent = pad(hours);
+      $m.textContent = pad(mins);
+      $s.textContent = pad(secs);
+    }
+
+    tick();
+    const timer = setInterval(tick, 1000);
+
+  </script>
 </body>
+
 
 </html>
