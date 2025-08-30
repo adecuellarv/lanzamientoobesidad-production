@@ -15,7 +15,7 @@
   <div id="root">
     <div data-overlay-container="true">
       <div class="app">
-        <div class="app__gradient animate-gradient"></div> <!-- gradiente animado -->
+        <div class="app__gradient animate-gradient"></div>
 
         <div class="app__content">
           <main class="main">
@@ -27,6 +27,8 @@
                 <div class="card fade-seq card-in">
                   <img src="./img/LOGO_APP.webp" alt="Logo App" />
                   <h1 class="card__title">Bienvenido a la experiencia digital</h1>
+
+                  <!-- cuenta regresiva -->
                   <div class="countdown">
                     <div class="countdown__item">
                       <span id="cd-days" class="countdown__num">00</span>
@@ -49,33 +51,29 @@
                     </div>
                   </div>
 
-                  <p id="cd-done" class="countdown__done" hidden>¡Comenzamos!</p>
+                  <!-- BOTÓN (oculto al inicio, se muestra cuando termina el contador) -->
+                  <div id="startWrapper" class="actions fade-seq btn-in" hidden>
+                    <a id="startBtn" class="btn-primary">Comenzar</a>
+                  </div>
 
                 </div>
-
-  
               </div>
+
               <footer class="page-footer">
                 <p>PP-TR-MX-PP-TR-MX-0504 | Material Exclusivo para Profesionales de la Salud | Agosto 2025 | No. de
                   Aviso 2509042002C00919</p>
               </footer>
             </section>
 
-
             <div class="bg-image-wrap parallax">
               <img src="./img/bg-start.webp" alt="" class="bg-image" />
             </div>
-
-
           </main>
         </div>
       </div>
-
-
-
-
     </div>
   </div>
+
   <script>
     const MX_TZ = 'America/Mexico_City';
 
@@ -83,21 +81,22 @@
       return new Date(new Date().toLocaleString('en-US', { timeZone: MX_TZ }));
     }
 
-    function targetTomorrow8AM_MX() {
+    // 👉 Objetivo: HOY a las 6:00 am (sin sumar día)
+    function targetToday6AM_MX() {
       const now = nowInMX();
       const target = new Date(now);
-      target.setHours(8, 0, 0, 0);
-      target.setDate(target.getDate() + 1);
+      //target.setHours(6, 0, 0, 0); // 6:00 am de HOY
+      target.setHours(0, 16, 0, 0); 
       return target;
     }
 
-    const target = targetTomorrow8AM_MX();
+    const target = targetToday6AM_MX();
 
     const $d = document.getElementById('cd-days');
     const $h = document.getElementById('cd-hours');
     const $m = document.getElementById('cd-mins');
     const $s = document.getElementById('cd-secs');
-    const $done = document.getElementById('cd-done');
+    const $startWrapper = document.getElementById('startWrapper');
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -110,7 +109,7 @@
         $h.textContent = '00';
         $m.textContent = '00';
         $s.textContent = '00';
-        $done.hidden = false;
+        $startWrapper.hidden = false; // mostrar botón al terminar
         clearInterval(timer);
         return;
       }
@@ -130,8 +129,14 @@
     tick();
     const timer = setInterval(tick, 1000);
 
+    // acción del botón
+    document.getElementById('startBtn').addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "https://lanzamientoobesidad-sigma.vercel.app/mapa";
+    });
   </script>
-</body>
 
+
+</body>
 
 </html>
