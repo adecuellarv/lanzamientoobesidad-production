@@ -178,7 +178,7 @@
     }
     .page-footer {
       position: absolute;        /* siempre abajo */
-      bottom: 0;
+      bottom: -5px;
       left: 0;
       width: 80%;
       left: 10%;
