@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="transparent">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Mounjaro">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
-  <title>Experiencias</title>
+  <title>Experiencias Mounjaro</title>
 </head>
 
 <body>
   <div id="root">
     <div data-overlay-container="true">
       <div class="app">
-        <div class="app__gradient animate-gradient"></div>
+        <div class="app__gradient animate-gradient"></div> <!-- gradiente animado -->
 
         <div class="app__content">
           <main class="main">
@@ -27,115 +28,63 @@
                 <div class="card fade-seq card-in">
                   <img src="./img/LOGO_APP.webp" alt="Logo App" />
                   <h1 class="card__title">Bienvenido a la experiencia digital</h1>
+                </div>
 
-                  <!-- cuenta regresiva -->
-                  <div class="countdown">
-                    <div class="countdown__item">
-                      <span id="cd-days" class="countdown__num">00</span>
-                      <span class="countdown__label">días</span>
-                    </div>
-                    <div class="countdown__sep">:</div>
-                    <div class="countdown__item">
-                      <span id="cd-hours" class="countdown__num">00</span>
-                      <span class="countdown__label">horas</span>
-                    </div>
-                    <div class="countdown__sep">:</div>
-                    <div class="countdown__item">
-                      <span id="cd-mins" class="countdown__num">00</span>
-                      <span class="countdown__label">min</span>
-                    </div>
-                    <div class="countdown__sep">:</div>
-                    <div class="countdown__item">
-                      <span id="cd-secs" class="countdown__num">00</span>
-                      <span class="countdown__label">seg</span>
-                    </div>
-                  </div>
-
-                  <!-- BOTÓN (oculto al inicio, se muestra cuando termina el contador) -->
-                  <div id="startWrapper" class="actions fade-seq btn-in" hidden>
-                    <a id="startBtn" class="btn-primary" href="https://lanzamiento-obesidad-2025.netlify.app/mapa">Comenzar</a>
-                  </div>
-
+                <div class="actions fade-seq btn-in">
+                  <a href="https://lanzamiento-obesidad-2025.netlify.app/mapa" class="btn-primary">Comenzar</a>
                 </div>
               </div>
-
               <footer class="page-footer">
                 <p>PP-TR-MX-PP-TR-MX-0504 | Material Exclusivo para Profesionales de la Salud | Agosto 2025 | No. de
                   Aviso 2509042002C00919</p>
               </footer>
             </section>
 
+
             <div class="bg-image-wrap parallax">
               <img src="./img/bg-start.webp" alt="" class="bg-image" />
             </div>
+
+
           </main>
         </div>
       </div>
+
+
+
+
     </div>
   </div>
 
   <script>
-    const MX_TZ = 'America/Mexico_City';
+    // Fechas umbral en horario de CDMX
+    //const agendaStart = new Date('2025-08-28T20:00:00-06:00');
+    const agendaStart = new Date('2025-08-28T00:00:00-06:00'); // Viernes 29
+    const mainStart = new Date('2025-08-30T00:00:00-06:00'); // Sábado 30
+    //const mainStart = new Date('2025-08-28T20:10:00-06:00'); // Sábado 30
 
-    function nowInMX() {
-      return new Date(new Date().toLocaleString('en-US', { timeZone: MX_TZ }));
+    function nowInMexicoCity() {
+      return new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' })
+      );
     }
 
-    // 👉 Objetivo: HOY a las 6:00 am (sin sumar día)
-    function targetToday6AM_MX() {
-      const now = nowInMX();
-      const target = new Date(now);
-      target.setHours(6, 0, 0, 0); // 6:00 am de HOY
-      //target.setHours(0, 16, 0, 0); 
-      return target;
-    }
+    const btn = document.getElementById('startBtn');
 
-    const target = targetToday6AM_MX();
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); // evita el comportamiento por defecto del <a>
 
-    const $d = document.getElementById('cd-days');
-    const $h = document.getElementById('cd-hours');
-    const $m = document.getElementById('cd-mins');
-    const $s = document.getElementById('cd-secs');
-    const $startWrapper = document.getElementById('startWrapper');
+      const now = nowInMexicoCity();
 
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    function tick() {
-      const now = nowInMX();
-      let diff = target - now;
-
-      if (diff <= 0) {
-        $d.textContent = '00';
-        $h.textContent = '00';
-        $m.textContent = '00';
-        $s.textContent = '00';
-        $startWrapper.hidden = false; // mostrar botón al terminar
-        clearInterval(timer);
-        return;
+      if (now >= mainStart) {
+        window.location.href = "";
+      } else if (now >= agendaStart) {
+        window.location.href = "";
+      } else {
+        //alert("Aún no está disponible, regresa más tarde 🙂");
       }
-
-      const sec = Math.floor(diff / 1000);
-      const days = Math.floor(sec / 86400);
-      const hours = Math.floor((sec % 86400) / 3600);
-      const mins = Math.floor((sec % 3600) / 60);
-      const secs = sec % 60;
-
-      $d.textContent = pad(days);
-      $h.textContent = pad(hours);
-      $m.textContent = pad(mins);
-      $s.textContent = pad(secs);
-    }
-
-    tick();
-    const timer = setInterval(tick, 1000);
-
-    // acción del botón
-    document.getElementById('startBtn').addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = "https://lanzamiento-obesidad-2025.netlify.app/mapa";
     });
   </script>
-
 
 </body>
 
